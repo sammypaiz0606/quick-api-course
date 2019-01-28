@@ -82,36 +82,36 @@ const url = 'https://randomuser.me/api/';
 
 btn.addEventListener('click', getInput);
 
-function getInput() {
-	let tempVal = intake.value;
-	let tempURL = url + '?results=' + tempVal;
-	fetch(tempURL)
-	.then(function(response) {
-		return response.json();
-	})
-	.then(function(data) {
-		console.log(data.results);
-		for(let x=0; x<data.results.length; x++) {
-			output.innerHTML+= data.results[x].name.first + '<br>';
-		}
-	})
-}
-
 // function getInput() {
-// 	fetch(url)
+// 	let tempVal = intake.value;
+// 	let tempURL = url + '?results=' + tempVal;
+// 	fetch(tempURL)
 // 	.then(function(response) {
 // 		return response.json();
 // 	})
 // 	.then(function(data) {
-// 		console.log(data.message);
-// 		for(let x=0; x<data.message.length; x++) {
-// 			console.log(data.message[x].output);
+// 		console.log(data.results);
+// 		for(let x=0; x<data.results.length; x++) {
+// 			output.innerHTML+= data.results[x].name.first + '<br>';
 // 		}
 // 	})
-// 	.catch(function(error) {
-// 		console.log(error);
-// 	})
 // }
+
+function getInput() {
+	fetch(url)
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(data) {
+		console.log(data.message);
+		for(let x=0; x<data.message.length; x++) {
+			console.log(data.message[x].output);
+		}
+	})
+	.catch(function(error) {
+		console.log(error);
+	})
+}
 
 
 
