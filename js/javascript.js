@@ -76,11 +76,16 @@ const btn = document.querySelector('button');
 const output = document.querySelector('#output');
 const intake = document.querySelector('input');
 //third example url
-const url = 'https://randomuser.me/api/';
+//const url = 'https://randomuser.me/api/';
 //fourth example
 //const  url = 'https://api.myjson.com/bins/m8kso';
-
-btn.addEventListener('click', getInput);
+//5th example api
+//const url = 'https://jsonplaceholder.typicode.com/photos';
+//start wars api example
+//const url ='https://swapi.co/api/planets/';
+//country api
+const url = 'https://restcountries.eu/rest/v2/all';
+//btn.addEventListener('click', getInput);
 
 // function getInput() {
 // 	let tempVal = intake.value;
@@ -97,21 +102,71 @@ btn.addEventListener('click', getInput);
 // 	})
 // }
 
-function getInput() {
-	fetch(url)
-	.then(function(response) {
-		return response.json();
+//fourth example
+// function getInput() {
+// 	fetch(url)
+// 	.then(res => res.json()) 
+// 	.then(json => console.log(json))
+// 	.catch(error => console.log(error));
+// }
+
+// function getInput() {
+// 	fetch(url)
+// 	.then(function(res) {
+// 		return res.json();
+// 	})
+// 	.then(function(data) {
+// 		console.log(data);
+// 	})
+// }
+
+
+
+
+// function getInput1() {
+// 	fetch(url)
+// 	.then(function(res) {
+// 		return res.json();
+// 	})
+// 	.then(function(data) {
+// 		console.log(data[0].url);
+// 		document.querySelector('img').src= 'data[0].url';
+// 	})
+// }
+
+//country function
+
+let myData = {};
+fetch(url)
+.then(function(res) {
+	return res.json();
+})
+.then(function(data) {
+	myData = data;
+	buildSelect(data);
+})
+
+function buildSelect(d) {
+	let select = document.createElement('select');
+	d.forEach(function(item, index) {
+		let option = document.createElement('option');
+		console.log(item, index);
+		option.value = index;
+		option.textContent = item.name;
+		select.appendChild(option);
 	})
-	.then(function(data) {
-		console.log(data.message);
-		for(let x=0; x<data.message.length; x++) {
-			console.log(data.message[x].output);
-		}
-	})
-	.catch(function(error) {
-		console.log(error);
-	})
+	document.querySelector('body').appendChild(select);
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
